@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FinTrack Pro</title>
+  <link rel="shortcut icon" href="https://yt3.googleusercontent.com/t8z86Svc4diX-k6VHCZ7AY0EFgVin91qLZigPwJLnavVaB0YPa0etWa-c7bG1BUEcbB4U4im=s900-c-k-c0x00ffffff-no-rj" type="image/x-icon">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="main">
+
+    <div class="header">
+      <div>
+        <h1>FinTrack Pro</h1>
+        <p>Personal Finance Tracker</p>
+      </div>
+
+      <button id="themeBtn">🌙 Dark</button>
+    </div>
+
+    <div class="profile-box">
+      <input type="text" id="userName" placeholder="Enter your name">
+
+      <select id="currency">
+        <option value="₹">INR ₹</option>
+        <option value="$">USD $</option>
+        <option value="€">EUR €</option>
+        <option value="£">GBP £</option>
+        <option value="¥">JPY ¥</option>
+      </select>
+
+      <button id="saveProfile">Save</button>
+    </div>
+
+    <h2 id="welcome">Welcome User 👋</h2>
+
+    <div class="cards">
+
+      <div class="card balance-card">
+        <h3>💰 Current Balance</h3>
+        <h2 id="balance">₹0</h2>
+        <p>Your available money</p>
+      </div>
+
+      <div class="card income-card">
+        <h3>📈 Total Income</h3>
+        <h2 id="income">₹0</h2>
+        <p>Money received</p>
+      </div>
+
+      <div class="card expense-card">
+        <h3>📉 Total Expense</h3>
+        <h2 id="expense">₹0</h2>
+        <p>Money spent</p>
+      </div>
+
+    </div>
+
+    <div class="form-box">
+      <h2>Add New Transaction</h2>
+
+      <input type="text" id="title" placeholder="Transaction title">
+      <input type="number" id="amount" placeholder="Amount">
+
+      <select id="type">
+        <option value="income">Income</option>
+        <option value="expense">Expense</option>
+      </select>
+
+      <button id="addBtn">+ Add Transaction</button>
+    </div>
+
+    <div class="filter-box">
+      <button class="filterBtn" data-filter="all">All</button>
+      <button class="filterBtn" data-filter="income">Income</button>
+      <button class="filterBtn" data-filter="expense">Expense</button>
+    </div>
+
+    <div class="transaction-box">
+      <h2>Transaction History</h2>
+      <ul id="transactionList"></ul>
+    </div>
+
+    <div class="chart-box">
+      <h2>Cash Flow</h2>
+
+      <div class="chart">
+        <div class="bar income-bar" id="incomeBar">Income</div>
+        <div class="bar expense-bar" id="expenseBar">Expense</div>
+      </div>
+    </div>
+
+    <button id="resetBtn">Reset All Data</button>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
