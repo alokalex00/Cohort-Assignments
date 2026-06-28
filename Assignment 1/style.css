@@ -1,0 +1,131 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+html,body{
+    height: 100%;
+    width: 100%;
+    background-color: #f1f1f1;
+}
+
+.main{
+    height: 94%;
+    width: 96%;
+    background-color: white;
+    position: relative;
+    margin: 20px auto;
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+.left{
+    height: 100%;
+    width: 62%;
+    background-color: #ffd400;
+    position: relative;
+    padding: 20px 70px;
+}
+
+.logo{
+    width: 200px;
+}
+
+.content{
+    position: absolute;
+    top: 150px;
+    left: 50px;
+}
+
+.content h5{
+    letter-spacing: 8px;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.content h1{
+    font-size: 120px;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.content p{
+    width: 420px;
+    font-size: 20px;
+    line-height: 30px;
+    margin-bottom: 30px;
+}
+
+.number{
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin-top: 0px;
+    position: relative;
+
+}
+
+.line{
+    height: 4px;
+    width: 70px;
+    background-color: black;
+    border-radius: 10px;
+}
+
+.number h3{
+    font-size: 25px;
+}
+
+.circle{
+    height: 250px;
+    width: 250px;
+    border: 25px solid rgba(0,0,0,0.08);
+    border-radius: 50%;
+    position: absolute;
+    bottom: -70px;
+    left: -20px;
+}
+
+.right{
+    height: 100%;
+    width: 38%;
+    background-color: #f8edd0;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.menu{
+    font-size: 50px;
+    position: absolute;
+    top: 40px;
+    right: 50px;
+}
+.pikachu{
+    height: 500px;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(-44%, -50%);
+}
+.dots{
+    position: absolute;
+    right: 40px;
+    top: 45%;
+}
+
+.dots div{
+    height: 18px;
+    width: 18px;
+
+    background-color: #ffc800;
+    border-radius: 50%;
+
+    margin-bottom: 22px;
+}
+
+.dots .black{
+    background-color: black;
+}
