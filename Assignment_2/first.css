@@ -1,0 +1,293 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: gilroy;
+}
+
+html,body{
+    height: 100%;
+    width: 100%;
+}
+
+body{
+    background-color: #050505;
+}
+
+main{
+    width: 100%;
+    min-height: 100vh;
+    padding: 20px 35px;
+    background-color: #050505;
+}
+
+header{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header h1{
+    color: white;
+    font-size: 75px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 500;
+}
+
+.line{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.leftline,
+.rightline{
+    width: 90px;
+    height: 2px;
+    background-color: #ff8800;
+}
+
+.line i{
+    color: #ff8800;
+    font-size: 22px;
+}
+
+.cards{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 45px;
+    flex-wrap: wrap;
+}
+
+.card{
+    width: 23%;
+    height: 520px;
+    background-color: #111;
+    border-radius: 30px;
+    border: 1px solid #2f2f2f;
+    position: relative;
+    padding: 25px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.active{
+    border: 1px solid #ff8800;
+    box-shadow: 0 0 20px #ff880067;
+}
+
+.tag{
+    position: absolute;
+    top: 22px;
+    left: 22px;
+
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    border: 1px solid #ff8800;
+    border-radius: 30px;
+
+    padding: 7px 14px;
+}
+
+.tag i{
+    color: #ff8800;
+    font-size: 12px;
+}
+
+.tag h5{
+    color: #ff8800;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.dot{
+    width: 10px;
+    height: 10px;
+    background-color: #ff8800;
+    border-radius: 50%;
+}
+
+.card img{
+    width: 100%;
+    height: 290px;
+    object-fit: contain;
+    margin-top: 20px;
+}
+
+.card h2{
+    color: white;
+    margin-top: 10px;
+    font-size: 25px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 500;
+}
+
+.card p{
+    color: #9d9d9d;
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+.smallline{
+    width: 60px;
+    height: 2px;
+    background-color: #ff8800;
+    margin: 20px auto;
+}
+
+.card h3{
+    color: #ff8800;
+    font-size: 38px;
+}
+
+.chef{
+    width: 100%;
+    height: 430px;
+
+    margin-top: 40px;
+
+    border: 1px solid #222;
+    border-radius: 30px;
+
+    display: flex;
+    align-items: center;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background-color: #0b0b0b;
+}
+
+.chefleft{
+    width: 30%;
+    height: 100%;
+}
+
+.chefleft img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.chef-middle{
+    width: 50%;
+    padding-left: 40px;
+}
+
+.chef-middle h4{
+    color: #ff8800;
+    letter-spacing: 5px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.chef-middle h1{
+    color: white;
+    font-size: 60px;
+    margin-top: 20px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 500;
+}
+
+.p1{
+    color: #cfcfcf;
+    font-size: 24px;
+    margin-top: 20px;
+}
+
+.p2{
+    color: #888;
+    font-size: 22px;
+    line-height: 40px;
+    margin-top: 20px;
+}
+
+.chef-middle button{
+    margin-top: 35px;
+    padding: 18px 35px;
+    border-radius: 40px;
+    border: 1px solid #ff8800;
+    background-color: transparent;
+    color: #ff8800;
+
+    font-size: 22px;
+
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.leaf{
+    position: absolute;
+    right: 60px;
+    bottom: 20px;
+}
+
+.leaf i{
+    font-size: 260px;
+    color: #2d1700;
+}
+
+footer{
+    width: 100%;
+    margin-top: 25px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.fleft h3{
+    color: #9d9d9d;
+    font-weight: 400;
+}
+
+.fcenter{
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.fcenter h3{
+    color: #cfcfcf;
+    font-weight: 400;
+}
+
+.fcenter span{
+    color: #ff8800;
+    font-size: 25px;
+}
+
+.fright{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.fright h3{
+    color: white;
+    font-weight: 400;
+}
+
+.icon{
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+    border: 1px solid #ff8800;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon i{
+    color: #ff8800;
+    font-size: 18px;
+}
