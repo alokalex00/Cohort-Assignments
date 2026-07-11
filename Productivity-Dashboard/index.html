@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Productivity Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <main class="app">
+
+    <header>
+      <div>
+        <h1>Productivity Dashboard</h1>
+        <p id="dateText">Loading date...</p>
+      </div>
+
+      <div class="top-right">
+        <p id="timeText">00:00:00</p>
+        <button id="themeBtn">🌙 Dark</button>
+      </div>
+    </header>
+
+    <section id="dashboard" class="dashboard">
+
+      <div class="card" data-target="todoSection">
+        <h2>✅ Todo List</h2>
+        <p>Manage your daily tasks</p>
+      </div>
+
+      <div class="card" data-target="plannerSection">
+        <h2>📅 Daily Planner</h2>
+        <p>Plan your day by time</p>
+      </div>
+
+      <div class="card" data-target="quoteSection">
+        <h2>💡 Motivation</h2>
+        <p>Get a fresh quote</p>
+      </div>
+
+      <div class="card" data-target="pomodoroSection">
+        <h2>⏳ Pomodoro</h2>
+        <p>Focus with timer</p>
+      </div>
+
+      <div class="card" data-target="weatherSection">
+        <h2>🌦 Weather</h2>
+        <p>Check current weather</p>
+      </div>
+
+      <div class="card" data-target="goalsSection">
+        <h2>🎯 Daily Goals</h2>
+        <p>Track today goals</p>
+      </div>
+
+    </section>
+
+    <section id="todoSection" class="feature">
+      <button class="backBtn">← Back</button>
+      <h2>Todo List</h2>
+
+      <div class="input-box">
+        <input type="text" id="todoInput" placeholder="Enter your task">
+        <button id="addTodoBtn">Add</button>
+      </div>
+
+      <ul id="todoList"></ul>
+    </section>
+
+    <section id="plannerSection" class="feature">
+      <button class="backBtn">← Back</button>
+      <h2>Daily Planner</h2>
+
+      <div id="plannerList"></div>
+    </section>
+
+    <section id="quoteSection" class="feature">
+      <button class="backBtn">← Back</button>
+      <h2>Motivation Quote</h2>
+
+      <div class="quote-box">
+        <p id="quoteText">Click button to get quote.</p>
+        <h4 id="quoteAuthor"></h4>
+        <button id="newQuoteBtn">New Quote</button>
+      </div>
+    </section>
+
+    <section id="pomodoroSection" class="feature">
+      <button class="backBtn">← Back</button>
+      <h2>Pomodoro Timer</h2>
+
+      <div class="timer-box">
+        <h3 id="timerLabel">Work Session</h3>
+        <h1 id="timerDisplay">25:00</h1>
+
+        <button id="startBtn">Start</button>
+        <button id="pauseBtn">Pause</button>
+        <button id="resetBtn">Reset</button>
+      </div>
+    </section>
+
+    <section id="weatherSection" class="feature">
+      <button class="backBtn">← Back</button>
+      <h2>Weather Widget</h2>
+
+      <div class="weather-box">
+        <input type="text" id="cityInput" placeholder="Enter city name">
+        <button id="weatherBtn">Check Weather</button>
+
+        <h3 id="cityName">City</h3>
+        <p id="temperature">Temperature: --</p>
+        <p id="condition">Condition: --</p>
+      </div>
+    </section>
+
+    <section id="goalsSection" class="feature">
+      <button class="backBtn">← Back</button>
+      <h2>Daily Goals</h2>
+
+      <div class="input-box">
+        <input type="text" id="goalInput" placeholder="Enter your goal">
+        <button id="addGoalBtn">Add Goal</button>
+      </div>
+
+      <p id="goalProgress">0 of 0 completed</p>
+      <ul id="goalList"></ul>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
