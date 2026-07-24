@@ -1,17 +1,64 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-import Logo from "./components/Logo";
-import LoginForm from "./components/LoginForm";
-import Stats from "./components/Stats";
+import AuthPage from "./components/AuthPage";
 import Navbar from "./components/Navbar";
 import ProductGrid from "./components/ProductGrid";
+import CartDrawer from "./components/CartDrawer";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [cartCount, setCartCount] = useState(0);
+  // -----------------------------
+  // USER STATE
+  // -----------------------------
+
+  const [user, setUser] = useState(() => {
+    const savedUser = localStorage.getItem("skymartUser");
+
+    return savedUser ? JSON.parse(savedUser) : null;
+  });
+
+  // -----------------------------
+  // CART STATE
+  // -----------------------------
+
+  const [cart, setCart] = useState(() => {
+    const savedCart = localStorage.getItem("skymartCart");
+
+    return savedCart ? JSON.parse(savedCart) : [];
+  });
+
   const [searchText, setSearchText] = useState("");
-  const [selectedCategory, setSelectedCategory] =
-    useState("All");
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [cartOpen, setCartOpen] = useState(false);
+
+  // -----------------------------
+  // SAVE USER
+  // -----------------------------
+
+  useEffect(() => {
+    if (user) {
+      localStorage.setItem(
+        "skymartUser",
+        JSON.stringify(user)
+      );
+    } else {
+      localStorage.removeItem("skymartUser");
+    }
+  }, [user]);
+
+  // -----------------------------
+  // SAVE CART
+  // -----------------------------
+
+  useEffect(() => {
+    localStorage.setItem(
+      "skymartCart",
+      JSON.stringify(cart)
+    );
+  }, [cart]);
+
+  // -----------------------------
+  // PRODUCTS
+  // -----------------------------
 
   const products = [
     {
@@ -22,6 +69,7 @@ function App() {
       image:
         "https://www.leafstudios.in/cdn/shop/files/1_a43c5e0b-3a47-497d-acec-b4764259b10e_800x.png?v=1750486829",
     },
+
     {
       id: 2,
       name: "Smart Watch",
@@ -30,6 +78,7 @@ function App() {
       image:
         "https://i5.walmartimages.com/seo/Kogiio-Smart-Watch-Fitness-Tracker-2-01-Black-Case-with-Black-Band-1-Count-1-Pack_d94ed35a-84ea-4b4c-b28a-a9215086a266.747f659b406adbc741e29a4d1fb13128.jpeg",
     },
+
     {
       id: 3,
       name: "Running Shoes",
@@ -38,6 +87,7 @@ function App() {
       image:
         "https://www.campusshoes.com/cdn/shop/files/FIRST_11G-787_LGRY-BLK_01.webp?v=1763546608",
     },
+
     {
       id: 4,
       name: "Urban Backpack",
@@ -46,6 +96,7 @@ function App() {
       image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0J2RK4VqG9YeLZT7TdQAdK8jz-7SIHpbl-kGOUBFIKQ&s=10",
     },
+
     {
       id: 5,
       name: "Modern Lamp",
@@ -54,6 +105,7 @@ function App() {
       image:
         "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=600",
     },
+
     {
       id: 6,
       name: "Street Jacket",
@@ -64,105 +116,197 @@ function App() {
     },
   ];
 
-  function addToCart() {
-    setCartCount((prev) => prev + 1);
+  // -----------------------------
+  // ADD TO CART
+  // -----------------------------
+
+  function addToCart(product) {
+    setCart((previousCart) => {
+      const existingProduct =
+        previousCart.find(
+          (item) => item.id === product.id
+        );
+
+      if (existingProduct) {
+        return previousCart.map((item) =>
+          item.id === product.id
+            ? {
+                ...item,
+                quantity: item.quantity + 1,
+              }
+            : item
+        );
+      }
+
+      return [
+        ...previousCart,
+        {
+          ...product,
+          quantity: 1,
+        },
+      ];
+    });
   }
 
-  if (!loggedIn) {
-    return (
-      <main className="min-h-screen bg-[#0b0b0b] text-white">
-        <div className="grid min-h-screen lg:grid-cols-2">
-          <section className="flex flex-col justify-between border-r border-gray-700 p-8 md:p-14">
-            <Logo />
+  // -----------------------------
+  // INCREASE QUANTITY
+  // -----------------------------
 
-            <div className="my-16">
-              <p className="mb-6 font-bold uppercase tracking-wider text-lime-400">
-                Welcome Back
-              </p>
-
-              <h1 className="max-w-2xl text-5xl font-bold leading-tight md:text-7xl">
-                Shop the future.
-                <br />
-                <span className="text-lime-400">
-                  Today.
-                </span>
-              </h1>
-
-              <p className="mt-8 max-w-xl text-lg leading-8 text-gray-500">
-                Thousands of products, lightning-fast
-                delivery, and prices that make your wallet
-                happy.
-              </p>
-
-              <div className="mt-12">
-                <Stats />
-              </div>
-            </div>
-
-            <p className="text-sm text-gray-700">
-              © 2026 SkyMart
-            </p>
-          </section>
-
-          <section className="flex items-center justify-center p-8">
-            <LoginForm
-              onLogin={() => setLoggedIn(true)}
-            />
-          </section>
-        </div>
-      </main>
+  function increaseQuantity(id) {
+    setCart((previousCart) =>
+      previousCart.map((item) =>
+        item.id === id
+          ? {
+              ...item,
+              quantity: item.quantity + 1,
+            }
+          : item
+      )
     );
   }
 
+  // -----------------------------
+  // DECREASE QUANTITY
+  // -----------------------------
+
+  function decreaseQuantity(id) {
+    setCart((previousCart) =>
+      previousCart
+        .map((item) =>
+          item.id === id
+            ? {
+                ...item,
+                quantity: item.quantity - 1,
+              }
+            : item
+        )
+        .filter((item) => item.quantity > 0)
+    );
+  }
+
+  // -----------------------------
+  // REMOVE PRODUCT
+  // -----------------------------
+
+  function removeFromCart(id) {
+    setCart((previousCart) =>
+      previousCart.filter(
+        (item) => item.id !== id
+      )
+    );
+  }
+
+  // -----------------------------
+  // LOGOUT
+  // -----------------------------
+
+  function logout() {
+    setUser(null);
+  }
+
+  // -----------------------------
+  // AUTH PAGE
+  // -----------------------------
+
+  if (!user) {
+    return (
+      <AuthPage
+        onLogin={(loggedUser) =>
+          setUser(loggedUser)
+        }
+      />
+    );
+  }
+
+  // -----------------------------
+  // CART COUNT
+  // -----------------------------
+
+  const cartCount = cart.reduce(
+    (total, item) =>
+      total + item.quantity,
+    0
+  );
+
   return (
-    <main className="min-h-screen bg-[#0b0b0b]">
+    <main className="min-h-screen bg-[#0a0a0a] text-white">
+
       <Navbar
+        user={user}
         searchText={searchText}
         setSearchText={setSearchText}
         cartCount={cartCount}
-        onLogout={() => setLoggedIn(false)}
+        openCart={() => setCartOpen(true)}
+        logout={logout}
       />
 
-      <section
-        id="featured"
-        className="px-6 py-24 md:px-10"
-      >
-        <div className="mx-auto max-w-7xl rounded-[40px] border border-gray-800 bg-gradient-to-br from-[#121212] to-[#0c0c0c] p-10 md:p-16">
-          <p className="font-semibold uppercase tracking-widest text-lime-400">
-            Future of Shopping
+      {/* HERO */}
+
+      <section className="px-6 py-20 md:px-10">
+        <div className="mx-auto max-w-7xl rounded-[36px] border border-gray-800 bg-gradient-to-br from-[#111] to-[#0b0b0b] p-10 md:p-16">
+
+          <p className="font-bold uppercase tracking-widest text-lime-400">
+            Welcome to SkyMart
           </p>
 
-          <h2 className="mt-4 max-w-4xl text-5xl font-bold text-white md:text-7xl">
-            Everything you need.
-            <br />
-            One futuristic marketplace.
-          </h2>
+          <h1 className="mt-4 max-w-4xl text-5xl font-bold leading-tight md:text-7xl">
 
-          <p className="mt-7 max-w-2xl text-lg leading-8 text-gray-500">
-            Discover trending technology, fashion, home
-            essentials and more.
+            Shop smarter.
+            <br />
+
+            <span className="text-lime-400">
+              Live better.
+            </span>
+
+          </h1>
+
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-gray-500">
+
+            Explore trending products,
+            amazing prices and a smooth
+            shopping experience.
+
           </p>
 
           <a
             href="#products"
-            className="mt-9 inline-block rounded-xl bg-lime-400 px-7 py-4 font-bold text-black"
+            className="mt-8 inline-block rounded-xl bg-lime-400 px-7 py-4 font-bold text-black"
           >
             Explore Products →
           </a>
+
         </div>
       </section>
+
+      {/* PRODUCTS */}
 
       <ProductGrid
         products={products}
         searchText={searchText}
         selectedCategory={selectedCategory}
-        setSelectedCategory={setSelectedCategory}
+        setSelectedCategory={
+          setSelectedCategory
+        }
         addToCart={addToCart}
       />
 
+      {/* CART */}
+
+      <CartDrawer
+        cart={cart}
+        isOpen={cartOpen}
+        closeCart={() => setCartOpen(false)}
+        increaseQuantity={increaseQuantity}
+        decreaseQuantity={decreaseQuantity}
+        removeFromCart={removeFromCart}
+      />
+
       <footer className="border-t border-gray-800 px-6 py-10 text-center text-gray-600">
-        SkyMart © 2026 — Shop the future today.
+
+        © 2026 SkyMart — Shop the future today.
+
       </footer>
+
     </main>
   );
 }

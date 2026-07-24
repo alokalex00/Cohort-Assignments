@@ -1,46 +1,64 @@
 import Logo from "./Logo";
 
-function Navbar({ searchText, setSearchText, cartCount, onLogout }) {
+function Navbar({
+  user,
+  searchText,
+  setSearchText,
+  cartCount,
+  openCart,
+  logout,
+}) {
   return (
-    <nav className="sticky top-0 z-50 flex items-center justify-between border-b border-gray-800 bg-[#0b0b0b]/95 px-6 py-4 backdrop-blur md:px-10">
-      <Logo />
+    <nav className="sticky top-0 z-40 border-b border-gray-800 bg-[#0a0a0a]/95 px-6 py-4 backdrop-blur md:px-10">
 
-      <div className="hidden gap-8 md:flex">
-        <a
-          href="#products"
-          className="text-gray-300 transition hover:text-lime-400"
-        >
-          Products
-        </a>
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-5">
 
-        <a
-          href="#featured"
-          className="text-gray-300 transition hover:text-lime-400"
-        >
-          Featured
-        </a>
-      </div>
+        <Logo />
 
-      <div className="flex items-center gap-3">
-        <input
-          type="text"
-          placeholder="Search..."
-          value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
-          className="hidden rounded-xl border border-gray-700 bg-[#151515] px-4 py-2 text-white outline-none focus:border-lime-400 sm:block"
-        />
+        <div className="hidden flex-1 justify-center md:flex">
 
-        <div className="rounded-xl bg-[#151515] px-4 py-2 text-white">
-          🛒 {cartCount}
+          <input
+            type="text"
+            placeholder="Search products..."
+            value={searchText}
+            onChange={(e) =>
+              setSearchText(e.target.value)
+            }
+            className="w-full max-w-md rounded-xl border border-gray-700 bg-[#151515] px-4 py-3 outline-none focus:border-lime-400"
+          />
+
         </div>
 
-        <button
-          onClick={onLogout}
-          className="rounded-xl border border-gray-700 px-4 py-2 text-gray-300 transition hover:border-lime-400 hover:text-lime-400"
-        >
-          Logout
-        </button>
+        <div className="flex items-center gap-3">
+
+          <p className="hidden text-sm text-gray-400 lg:block">
+
+            Hi, {user.name}
+
+          </p>
+
+          <button
+            onClick={openCart}
+            className="rounded-xl bg-[#181818] px-4 py-3"
+          >
+
+            🛒 {cartCount}
+
+          </button>
+
+          <button
+            onClick={logout}
+            className="rounded-xl border border-gray-700 px-4 py-3 text-gray-400 hover:border-lime-400 hover:text-lime-400"
+          >
+
+            Logout
+
+          </button>
+
+        </div>
+
       </div>
+
     </nav>
   );
 }
