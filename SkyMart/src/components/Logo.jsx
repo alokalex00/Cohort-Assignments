@@ -1,25 +1,16 @@
+import { Link } from "react-router-dom";
+
 function Logo() {
   return (
-    <div className="flex items-center gap-3">
-
-      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-lime-400 text-2xl font-bold text-black">
-
+    <Link to="/home" className="flex items-center gap-3">
+      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-400 text-xl font-black text-black shadow-lg shadow-cyan-400/20">
         ⚡
-
       </div>
 
-      <h1 className="text-2xl font-bold">
-
-        Sky
-        <span className="text-lime-400">
-
-          Mart
-
-        </span>
-
+      <h1 className="text-xl font-black tracking-tight text-white">
+        Sky<span className="text-cyan-400">Mart</span>
       </h1>
-
-    </div>
+    </Link>
   );
 }
 
