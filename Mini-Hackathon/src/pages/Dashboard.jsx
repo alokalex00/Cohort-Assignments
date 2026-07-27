@@ -534,7 +534,7 @@ const Dashboard = () => {
 
 <section className="github-section">
   <a
-    href="https://github.com/YOUR-USERNAME/YOUR-REPOSITORY"
+    href="href="https://github.com/alokalex00/Cohort-Assignments/tree/main/Mini-Hackathon""
     target="_blank"
     rel="noopener noreferrer"
     className="github-repo-card"
